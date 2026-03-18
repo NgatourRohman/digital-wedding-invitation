@@ -27,17 +27,21 @@ A beautiful, responsive wedding invitation website built with HTML, Tailwind CSS
 
 ## 📁 Project Structure
 
+```
 wedding-invitation/
-├── index.html # Landing page (open invitation)
-├── invitation.html # Main invitation page
+├── index.html
+├── invitation.html
 ├── css/
-│ ├── index.css # Styles for landing page
-│ └── invitation.css # Styles for invitation page
+│   ├── index.css
+│   └── invitation.css
 ├── js/
-│ ├── index.js # Script for landing page
-│ └── invitation.js # Script for invitation page
+│   ├── index.js
+│   └── invitation.js
 ├── data/
-│ └── data.json # All content data (names, dates, events, etc.)
+│   └── data.json
 ├── assets/
-│ └── images/ # All images (couple, backgrounds, etc.)
-└── README.md # This file
+│   └── images/
+│       ├── wedding.png
+│       └── groom.png
+└── README.md
+```
