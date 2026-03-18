@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="description" content="Wedding invitation of John & Sarah. Celebrate our joy with us." />
+    <meta property="og:title" content="John & Sarah - Wedding Invitation" />
+    <meta property="og:description" content="With humility and gratitude, we invite you to celebrate our wedding." />
+    <meta property="og:image" content="https://contoh.com/assets/images/wedding-invitation-preview.png" />
+    <!-- <meta property="og:url" content="https://contoh.com/" /> -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="John & Sarah Wedding" />
+    <meta property="og:locale" content="en_US" />
+    <title>John & Sarah – Wedding Invitation</title>
+    <link rel="icon" type="image/png" href="assets/images/wedding logo.png" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Quicksand:wght@300;400;500&amp;display=swap"
+        rel="stylesheet" />
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'inv-bg': '#F8F5F2',
+                        'inv-primary': '#3C2A21',
+                        'inv-accent': '#A68A73',
+                    },
+                    fontFamily: {
+                        'organic': ['"Playfair Display"', 'serif'],
+                        'body': ['"Quicksand"', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-soft': 'pulse-soft 4s ease-in-out infinite',
+                        'bloom': 'bloom 2s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': {
+                                transform: 'translateY(0)'
+                            },
+                            '50%': {
+                                transform: 'translateY(-20px)'
+                            },
+                        },
+                        'pulse-soft': {
+                            '0%, 100%': {
+                                opacity: 0.8
+                            },
+                            '50%': {
+                                opacity: 1
+                            },
+                        },
+                        bloom: {
+                            '0%': {
+                                opacity: 0,
+                                transform: 'scale(0.95)'
+                            },
+                            '100%': {
+                                opacity: 1,
+                                transform: 'scale(1)'
+                            },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="css/index.css" />
+</head>
+
+<body class="font-body text-inv-primary min-h-screen flex items-center justify-center relative overflow-x-hidden">
+    <div class="fixed inset-0 organic-gradient z-0"></div>
+    <div
+        class="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-inv-accent opacity-10 rounded-full blur-[100px] animate-float">
+    </div>
+    <div class="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-inv-primary opacity-5 rounded-full blur-[120px] animate-float"
+        style="animation-delay: 2s;"></div>
+
+    <main
+        class="relative z-10 w-full max-w-4xl px-4 sm:px-6 py-8 sm:py-12 flex flex-col items-center justify-center animate-bloom">
+        <div class="relative w-full max-w-2xl mb-8 sm:mb-12 group px-2">
+            <div class="relative overflow-hidden rounded-3xl shadow-2xl border border-white/20 animate-pulse-soft">
+                <img alt="Illustration of John & Sarah"
+                    class="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105"
+                    src="assets/images/wedding-invitation.png" loading="lazy" />
+            </div>
+            <div
+                class="absolute -top-3 -left-3 sm:-top-4 sm:-left-4 w-16 h-16 sm:w-24 sm:h-24 border-t-2 border-l-2 border-inv-accent opacity-30 rounded-tl-[40px]">
+            </div>
+            <div
+                class="absolute -bottom-3 -right-3 sm:-bottom-4 sm:-right-4 w-16 h-16 sm:w-24 sm:h-24 border-b-2 border-r-2 border-inv-accent opacity-30 rounded-br-[40px]">
+            </div>
+        </div>
+
+        <section class="text-center space-y-4 sm:space-y-6">
+            <p
+                class="uppercase tracking-[0.3em] text-inv-accent font-medium text-xs sm:text-sm md:text-base mb-1 sm:mb-2">
+                The Wedding Of</p>
+            <h1 class="font-organic text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-tight mb-2 sm:mb-4">
+                JOHN <span class="italic text-inv-accent">&amp;</span> SARAH
+            </h1>
+            <div class="w-12 sm:w-16 h-[1px] bg-inv-accent mx-auto my-4 sm:my-6 opacity-50"></div>
+            <p class="text-base sm:text-lg md:text-xl font-light tracking-wide max-w-md mx-auto italic opacity-80 px-2">
+                "Love is a living thing, growing in the garden of time."
+            </p>
+
+            <div class="mt-8 sm:mt-12 flex flex-col items-center">
+                <button
+                    class="morph-btn px-8 sm:px-10 py-6 sm:py-8 bg-inv-accent text-white font-medium tracking-[0.2em] uppercase text-xs sm:text-sm shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col items-center justify-center"
+                    id="openInvitation">
+                    <span>Open</span>
+                    <span class="text-[8px] sm:text-[10px] mt-1 opacity-80">Invitation</span>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/index.js"></script>
+</body>
+
+</html>
