@@ -1,0 +1,141 @@
+{
+  "nav": {
+    "brand": "H & D",
+    "links": [
+      { "text": "Kisah Kami", "href": "#timeline", "isButton": false },
+      { "text": "Acara", "href": "#event-details", "isButton": false },
+      { "text": "Konfirmasi", "href": "#rsvp", "isButton": true }
+    ]
+  },
+  "hero": {
+    "subtitle": "Kami mengundang Anda untuk merayakan pernikahan kami",
+    "groom": "Hari",
+    "bride": "Diah",
+    "date": "07 April 2026",
+    "location": "Yasaratu",
+    "buttonText": "Kirim Konfirmasi",
+    "image": "assets/images/wedding.png",
+    "background": "assets/images/hero-bg.png"
+  },
+  "versesBackground": "",
+  "verses": [
+    {
+      "arabic": "وَمِن كُلِّ شَيْءٍ خَلَقْنَا زَوْجَيْنِ لَعَلَّكُمْ تَذَكَّرُونَ",
+      "surah": "QS. Az-Zariyat: 49",
+      "translation": "Dan segala sesuatu Kami ciptakan berpasang-pasangan supaya kamu mengingat kebesaran Allah."
+    }
+  ],
+  "footerVerse": {
+    "arabic": "وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِّقَوْمٍ يَتَفَكَّرُونَ",
+    "surah": "QS. Ar-Rum: 21",
+    "translation": "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan hidup dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya, dan dijadikan-Nya di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda bagi kaum yang berpikir."
+  },
+  "coupleBackground": "assets/images/couple-bg.png",
+  "couple": {
+    "groom": {
+      "name": "Hari Agung",
+      "father": "Dadang",
+      "mother": "Ii",
+      "image": "assets/images/groom.png"
+    },
+    "bride": {
+      "name": "Diah Parniasih",
+      "father": "Muhaimin",
+      "mother": "Sarmi",
+      "image": "assets/images/bride.png"
+    }
+  },
+  "timeline": {
+    "title": "Perjalanan Cinta Kami",
+    "subtitle": "Garis waktu kisah kami, dari pertama bertemu hingga selamanya.",
+    "background": "assets/images/timeline-bg.png",
+    "events": [
+      {
+        "title": "Pertemuan Pertama",
+        "date": "01 Agustus 2015",
+        "description": "Semua bermula dari sapaan sederhana...",
+        "icon": "favorite"
+      },
+      {
+        "title": "Memutuskan untuk Bersama",
+        "date": "08 Mei 2019",
+        "description": "Hari di mana kami memutuskan untuk melangkah bersama.",
+        "icon": "diversity_1"
+      },
+      {
+        "title": "Lamaran",
+        "date": "26 Juli 2025",
+        "description": "Momen ajaib yang penuh kejutan di hadapan orang-orang terdekat.",
+        "icon": "diamond"
+      },
+      {
+        "title": "Pernikahan",
+        "date": "07 April 2026",
+        "description": "Awal dari kebersamaan kami selamanya.",
+        "icon": "all_inclusive",
+        "highlight": true
+      }
+    ]
+  },
+  "events": {
+    "title": "Acara Spesial",
+    "subtitle": "Simpan Tanggalnya",
+    "background": "assets/images/events-bg.png",
+    "items": [
+      {
+        "type": "Akad Nikah",
+        "time": "08.00 WIB - Selesai",
+        "date": "Selasa, 07 April 2026",
+        "location": "Kediaman Mempelai Wanita",
+        "icon": "heart"
+      },
+      {
+        "type": "Resepsi",
+        "time": "09.00 WIB - Selesai",
+        "date": "Selasa, 07 April 2026",
+        "location": "Perayaan Kebahagiaan",
+        "icon": "book"
+      }
+    ]
+  },
+  "location": {
+    "title": "Lokasi Acara",
+    "venue": "Kediaman Mempelai Wanita",
+    "address": "Desa Yasaratu, Dusun Kertajaya, RT 01 / RW 05, Kecamatan Mangunjaya, Kabupaten Pangandaran, Jawa Barat",
+    "mapUrl": "https://maps.app.goo.gl/FreNLLPPyBpG7hfL7",
+    "embedUrl": "https://www.google.com/maps?q=-7.501207,108.721431&output=embed",
+    "background": ""
+  },
+  "rsvp": {
+    "title": "Konfirmasi Kehadiran",
+    "description": "Sampaikan kehadiranmu agar kami dapat mempersiapkan segalanya dengan lebih baik.",
+    "background": "assets/images/rsvp-bg.png"
+  },
+  "guestbook": {
+    "title": "Buku Tamu",
+    "subtitle": "Tinggalkan pesan untuk kedua mempelai",
+    "background": "assets/images/guestbook-bg.png",
+    "initialMessages": [
+      {
+        "name": "Sarah & James",
+        "message": "Selamat menempuh hidup baru! Semoga selalu bahagia dan diberkahi.",
+        "time": "Baru saja"
+      },
+      {
+        "name": "Budi Santoso",
+        "message": "Semoga menjadi keluarga yang sakinah, mawaddah, warahmah. Barakallah!",
+        "time": "2 jam lalu"
+      }
+    ]
+  },
+  "closing": {
+    "quote": "\"Merupakan suatu kehormatan dan kebahagiaan bagi kami sekeluarga, apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu kepada kedua mempelai.\"",
+    "family": "Keluarga Besar"
+  },
+  "footer": {
+    "brand": "H & D",
+    "text": "Kami tidak sabar untuk merayakan bersama Anda",
+    "copyright": "© 2023 Selamanya & Selamanya",
+    "background": "assets/images/footer-bg.png"
+  }
+}

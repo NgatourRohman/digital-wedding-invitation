@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>Hari & Diah – Wedding Invitation</title>
+    <link rel="icon" type="image/png" href="assets/images/wedding logo.png" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries,typography"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&family=Public+Sans:wght@300;400;500;600;700&family=Montserrat:wght@300;400;600&family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/invitation.css" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#A67B5B",
+                        "background-light": "#FDFBF7",
+                        "background-dark": "#1A1A1A",
+                        "gold-soft": "#C5A059",
+                        "dark-floral": "#4A5D4E",
+                        "inv-accent": "#A68A73",
+                        "inv-bg": "#F2E9E1",
+                    },
+                    fontFamily: {
+                        display: ["Playfair Display", "serif"],
+                        body: ["Lato", "sans-serif"],
+                        sans: ["Public Sans", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                        twelve: "12px",
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200 font-body antialiased selection:bg-primary selection:text-white transition-colors duration-300">
+
+    <!-- Navbar -->
+    <div class="theme-brown">
+        <nav
+            class="fixed top-0 w-full z-50 py-4 px-4 md:py-6 md:px-12 flex justify-between items-center transition-all duration-300">
+            <div id="nav-brand" class="text-xl md:text-2xl font-display font-semibold tracking-wider text-primary">
+            </div>
+            <div id="nav-links"
+                class="hidden md:flex space-x-8 items-center text-sm uppercase tracking-widest font-semibold text-gray-600 dark:text-gray-300">
+            </div>
+            <div class="md:hidden text-primary cursor-pointer p-2" id="menu-toggle">
+                <span class="material-icons text-3xl">menu</span>
+            </div>
+        </nav>
+    </div>
+
+    <div id="mobile-menu"
+        class="fixed inset-0 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md z-50 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col">
+        <div class="flex-1 flex flex-col items-center justify-center space-y-6 py-8 px-4 overflow-y-auto"
+            id="mobile-nav-links"></div>
+        <div class="pb-8 flex justify-center">
+            <span
+                class="material-icons text-primary text-4xl bg-white/80 dark:bg-gray-800/80 rounded-full p-3 shadow-lg cursor-pointer active:scale-95 transition-transform"
+                id="menu-close">close</span>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="theme-brown relative" id="hero-section">
+        <header class="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 md:pt-20">
+            <div id="hero-bg" class="absolute inset-0 w-full h-full bg-cover bg-center"
+                style="background-image: url('');"></div>
+            <img id="hero-image"
+                class="absolute inset-0 w-full h-full object-cover filter blur-[2px] scale-105 object-top opacity-80 dark:opacity-40"
+                src="" alt="Wedding Couple Illustration" />
+            <div
+                class="absolute inset-0 bg-gradient-to-b from-background-light/40 via-background-light/20 to-background-light dark:from-background-dark/80 dark:via-background-dark/60 dark:to-background-dark z-0">
+            </div>
+            <div class="relative z-10 text-center px-4 max-w-4xl mx-auto flex flex-col items-center">
+                <p id="hero-subtitle"
+                    class="text-xs md:text-base uppercase tracking-[0.3em] font-semibold text-primary mb-4 animate-fade-in-up">
+                </p>
+                <h1
+                    class="text-5xl md:text-8xl lg:text-9xl font-display text-gray-900 dark:text-white mb-4 leading-tight drop-shadow-sm">
+                    <span id="hero-groom" class="block animate-fade-in-up" style="animation-delay: 0.1s;"></span>
+                    <span class="block text-3xl md:text-6xl italic text-primary my-2 animate-fade-in-up"
+                        style="animation-delay: 0.2s;">&amp;</span>
+                    <span id="hero-bride" class="block animate-fade-in-up" style="animation-delay: 0.3s;"></span>
+                </h1>
+                <div class="mt-6 md:mt-8 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 text-base md:text-xl font-light tracking-wide text-gray-700 dark:text-gray-300 animate-fade-in-up"
+                    style="animation-delay: 0.4s;">
+                    <span id="hero-date"></span>
+                    <span class="hidden md:inline-block w-2 h-2 rounded-full bg-primary opacity-50"></span>
+                    <span id="hero-location"></span>
+                </div>
+                <a id="hero-button"
+                    class="mt-8 md:mt-12 inline-flex items-center gap-2 border border-primary text-primary hover:bg-primary hover:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 px-6 py-3 md:px-8 md:py-3 rounded-full uppercase tracking-widest text-xs md:text-sm font-semibold transition-all duration-300 animate-fade-in-up btn-hover-effect active:scale-95"
+                    href="#rsvp" style="animation-delay: 0.5s;">
+                    <span id="hero-button-text"></span>
+                    <span class="material-icons text-sm">arrow_downward</span>
+                </a>
+            </div>
+        </header>
+    </div>
+
+    <!-- Verses Section -->
+    <div id="verses-section" class="theme-orange relative"
+        style="background-image: url(''); background-size: cover; background-position: center;">
+        <div
+            class="absolute top-0 left-0 right-0 h-16 md:h-32 bg-gradient-to-b from-background-light/70 to-transparent dark:from-background-dark/80 dark:to-transparent z-0">
+        </div>
+        <div
+            class="absolute inset-0 bg-gradient-to-b from-background-light/40 via-background-light/20 to-background-light dark:from-background-dark/80 dark:via-background-dark/60 dark:to-background-dark z-0">
+        </div>
+        <div class="relative z-10 max-w-5xl mx-auto px-4 md:px-6 py-12 md:py-16">
+            <div id="verses-container" class="flex flex-col gap-16 md:gap-24"></div>
+        </div>
+    </div>
+
+    <!-- Couple Section -->
+    <div id="couple-section" class="theme-orange relative"
+        style="background-image: url(''); background-size: cover; background-position: center;">
+        <div
+            class="absolute top-0 left-0 right-0 h-16 md:h-32 bg-gradient-to-b from-background-light/70 to-transparent dark:from-background-dark/80 dark:to-transparent z-0">
+        </div>
+        <div
+            class="absolute inset-0 bg-gradient-to-b from-background-light/40 via-background-light/20 to-background-light dark:from-background-dark/80 dark:via-background-dark/60 dark:to-background-dark z-0">
+        </div>
+        <div class="relative z-10 max-w-5xl mx-auto px-4 md:px-6 py-12 md:py-16">
+            <div class="flex justify-center items-center gap-4 opacity-50 divider-template hidden">
+                <div class="h-px w-24 bg-primary/30"></div>
+                <span class="material-symbols-outlined text-primary">all_inclusive</span>
+                <div class="h-px w-24 bg-primary/30"></div>
+            </div>
+            <section class="flex flex-col gap-12 md:gap-24 py-4 md:py-8" id="couple">
+                <div class="text-center mb-4 md:mb-8 fade-up">
+                    <h1 class="text-3xl md:text-5xl font-bold tracking-tight mb-2 md:mb-4">Mempelai</h1>
+                    <p class="text-sm md:text-base text-slate-600 dark:text-slate-400 px-2">Dengan memohon rahmat dan
+                        ridho Allah SWT, kami bermaksud menyelenggarakan pernikahan putra-putri kami:</p>
+                </div>
+                <!-- Groom -->
+                <div class="flex flex-col md:flex-row items-center gap-6 md:gap-16 fade-up">
+                    <div class="w-48 h-48 md:w-80 md:h-80 shrink-0 relative group">
+                        <div
+                            class="absolute inset-0 bg-primary/10 rounded-full transform translate-x-3 translate-y-3 md:translate-x-4 md:translate-y-4 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-500">
+                        </div>
+                        <div id="groom-image"
+                            class="w-full h-full rounded-full bg-cover bg-center bg-slate-200 dark:bg-slate-800 relative z-10 border-4 border-background-light dark:border-background-dark shadow-xl overflow-hidden couple-image"
+                            style="background-image: url('');"></div>
+                    </div>
+                    <div class="text-center md:text-left flex-1">
+                        <h2 id="groom-name" class="text-3xl md:text-5xl font-bold text-primary mb-1 md:mb-2"></h2>
+                        <p
+                            class="text-sm md:text-lg text-slate-500 dark:text-slate-400 mb-3 md:mb-6 tracking-wide uppercase text-xs md:text-sm font-semibold">
+                            Putra</p>
+                        <p id="groom-parents"
+                            class="text-sm md:text-base text-slate-700 dark:text-slate-300 leading-relaxed max-w-lg mx-auto md:mx-0">
+                        </p>
+                    </div>
+                </div>
+                <!-- Separator -->
+                <div class="flex justify-center items-center fade-up">
+                    <div
+                        class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary text-2xl md:text-3xl font-serif italic shadow-inner">
+                        &amp;</div>
+                </div>
+                <!-- Bride -->
+                <div class="flex flex-col md:flex-row-reverse items-center gap-6 md:gap-16 fade-up">
+                    <div class="w-48 h-48 md:w-80 md:h-80 shrink-0 relative group">
+                        <div
+                            class="absolute inset-0 bg-primary/10 rounded-full transform -translate-x-3 translate-y-3 md:-translate-x-4 md:translate-y-4 group-hover:-translate-x-2 group-hover:translate-y-2 transition-transform duration-500">
+                        </div>
+                        <div id="bride-image"
+                            class="w-full h-full rounded-full bg-cover bg-center bg-slate-200 dark:bg-slate-800 relative z-10 border-4 border-background-light dark:border-background-dark shadow-xl overflow-hidden couple-image"
+                            style="background-image: url('');"></div>
+                    </div>
+                    <div class="text-center md:text-right flex-1">
+                        <h2 id="bride-name" class="text-3xl md:text-5xl font-bold text-primary mb-1 md:mb-2"></h2>
+                        <p
+                            class="text-sm md:text-lg text-slate-500 dark:text-slate-400 mb-3 md:mb-6 tracking-wide uppercase text-xs md:text-sm font-semibold">
+                            Putri</p>
+                        <p id="bride-parents"
+                            class="text-sm md:text-base text-slate-700 dark:text-slate-300 leading-relaxed max-w-lg mx-auto md:mx-0 md:ml-auto">
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Timeline Section -->
+    <div class="theme-orange relative" id="timeline-section"
+        style="background-image: url(''); background-size: cover; background-position: center;">
+        <div
+            class="absolute top-0 left-0 right-0 h-16 md:h-32 bg-gradient-to-b from-background-light/70 to-transparent dark:from-background-dark/80 dark:to-transparent z-0">
+        </div>
+        <div
+            class="absolute inset-0 bg-gradient-to-b from-background-light/40 via-background-light/20 to-background-light dark:from-background-dark/80 dark:via-background-dark/60 dark:to-background-dark z-0">
+        </div>
+        <div
+            class="relative z-10 flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden bg-[#F8F5F0]/80 dark:bg-background-dark/80 backdrop-blur-sm text-[#8E7C6D] dark:text-slate-100 font-display">
+            <div class="layout-container flex h-full grow flex-col">
+                <div class="px-4 sm:px-6 md:px-10 lg:px-20 flex flex-1 justify-center py-4 md:py-5">
+                    <div class="layout-content-container flex flex-col max-w-[960px] flex-1 w-full">
+                        <div class="flex flex-col items-center justify-center gap-2 p-3 md:p-4 mb-6 md:mb-10 text-center fade-up"
+                            id="timeline">
+                            <h1 id="timeline-title"
+                                class="text-[#8E7C6D] dark:text-slate-100 text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em]">
+                            </h1>
+                            <p id="timeline-subtitle"
+                                class="text-[#8E7C6D]/80 dark:text-slate-300 text-sm md:text-lg font-normal leading-normal max-w-xl">
+                            </p>
+                        </div>
+                        <div id="timeline-events" class="relative w-full max-w-3xl mx-auto px-2 md:px-4">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Events Section -->
+    <section
+        class="relative min-h-screen flex items-center justify-center py-12 md:py-16 px-4 overflow-hidden bg-wedding-bg relative"
+        id="event-details" style="background-image: url(''); background-size: cover; background-position: center;">
+        <div
+            class="absolute top-0 left-0 right-0 h-16 md:h-32 bg-gradient-to-b from-background-light/70 to-transparent dark:from-background-dark/80 dark:to-transparent z-0">
+        </div>
+        <div
+            class="absolute inset-0 bg-gradient-to-b from-background-light/40 via-background-light/20 to-background-light dark:from-background-dark/80 dark:via-background-dark/60 dark:to-background-dark z-0">
+        </div>
+        <div
+            class="container max-w-5xl mx-auto relative z-10 bg-white/30 dark:bg-black/30 backdrop-blur-sm rounded-2xl md:rounded-3xl p-4 md:p-8">
+            <div class="text-center mb-6 md:mb-12 animate-fade-in fade-up">
+                <h2 id="events-subtitle" class="font-serif italic text-xl md:text-2xl text-gold-soft mb-1 md:mb-2"></h2>
+                <h1 id="events-title" class="font-serif text-3xl md:text-4xl lg:text-5xl text-dark-floral mb-2 md:mb-4">
+                </h1>
+                <div class="w-16 md:w-24 h-1 bg-gold-soft mx-auto rounded-full"></div>
+            </div>
+            <div id="events-cards" class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 items-stretch"></div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <div class="theme-orange relative" id="location-section"
+        style="background-image: url(''); background-size: cover; background-position: center;">
+        <div
+            class="absolute top-0 left-0 right-0 h-16 md:h-32 bg-gradient-to-b from-background-light/70 to-transparent dark:from-background-dark/80 dark:to-transparent z-0">
+        </div>
+        <div
+            class="absolute inset-0 bg-gradient-to-b from-background-light/40 via-background-light/20 to-background-light dark:from-background-dark/80 dark:via-background-dark/60 dark:to-background-dark z-0">
+        </div>
+        <div class="relative z-10">
+            <div class="flex justify-center items-center gap-4 opacity-50 py-4 md:py-8">
+                <div class="h-px w-16 md:w-24 bg-primary/30"></div>
+                <span class="material-symbols-outlined text-primary">spa</span>
+                <div class="h-px w-16 md:w-24 bg-primary/30"></div>
+            </div>
+            <section class="flex flex-col items-center py-8 md:py-12" id="location">
+                <div
+                    class="text-center mb-6 md:mb-10 max-w-2xl mx-auto bg-white/30 dark:bg-black/30 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-8 fade-up">
+                    <h2 id="location-title"
+                        class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 md:mb-6 italic font-serif">
+                    </h2>
+                    <div class="flex items-center justify-center gap-2 mb-2 md:mb-4 text-primary">
+                        <span class="material-symbols-outlined">location_on</span>
+                        <p id="location-venue" class="font-semibold uppercase tracking-widest text-xs md:text-sm"></p>
+                    </div>
+                    <p id="location-address"
+                        class="text-sm md:text-base text-slate-700 dark:text-slate-300 leading-relaxed px-2 md:px-4">
+                    </p>
+                </div>
+                <div class="w-full max-w-4xl px-2 md:px-4 fade-up">
+                    <div
+                        class="relative rounded-xl md:rounded-2xl overflow-hidden shadow-2xl border-2 md:border-4 border-white dark:border-slate-800 bg-[#F8F5F0] aspect-video md:aspect-[21/9] group">
+                        <div class="absolute inset-0 bg-slate-200 dark:bg-slate-700 flex items-center justify-center">
+                            <iframe id="location-map"
+                                class="absolute inset-0 w-full h-full opacity-80 grayscale hover:grayscale-0 transition-all duration-700"
+                                loading="lazy" referrerpolicy="no-referrer-when-downgrade" src=""></iframe>
+                            <div
+                                class="absolute inset-0 pointer-events-none border-[6px] md:border-[12px] border-white/20 dark:border-black/20">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-center mt-6 md:mt-10">
+                        <a id="location-map-link"
+                            class="inline-flex items-center gap-2 md:gap-3 bg-primary text-white px-6 py-3 md:px-8 md:py-4 rounded-full font-semibold hover:bg-primary/90 transition-all hover:scale-105 shadow-lg shadow-primary/20 group btn-hover-effect active:scale-95 text-sm md:text-base"
+                            href="#" target="_blank">
+                            <span class="tracking-wide">Buka di Google Maps</span>
+                            <span
+                                class="material-symbols-outlined text-base md:text-lg group-hover:translate-x-1 transition-transform">near_me</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- RSVP Section -->
+    <section class="py-16 md:py-32 px-4 md:px-6 bg-inv-bg flex flex-col items-center relative" id="rsvp"
+        style="background-image: url(''); background-size: cover; background-position: center;">
+        <div
+            class="absolute top-0 left-0 right-0 h-16 md:h-32 bg-gradient-to-b from-background-light/70 to-transparent dark:from-background-dark/80 dark:to-transparent z-0">
+        </div>
+        <div
+            class="absolute inset-0 bg-gradient-to-b from-background-light/40 via-background-light/20 to-background-light dark:from-background-dark/80 dark:via-background-dark/60 dark:to-background-dark z-0">
+        </div>
+        <div class="relative z-10 membrane p-6 md:p-12 lg:p-16 rounded-[30px] md:rounded-[40px] max-w-4xl w-full shadow-2xl overflow-hidden veined-material bg-white/40 dark:bg-black/40 backdrop-blur-md"
+            style="border:1px solid rgba(255,255,255,0.6);">
+            <svg class="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none" viewBox="0 0 400 400">
+                <path d="M0,100 C150,50 250,150 400,100" fill="transparent" stroke="#A68A73" />
+                <path d="M0,200 C100,250 300,150 400,250" fill="transparent" stroke="#A68A73" />
+            </svg>
+            <div class="relative z-10 text-center mb-6 md:mb-12 fade-up">
+                <h2 id="rsvp-title" class="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-4 tracking-tight"
+                    style="color:#3C2A21"></h2>
+                <p id="rsvp-description"
+                    class="opacity-60 italic text-sm md:text-base max-w-lg mx-auto leading-relaxed"></p>
+            </div>
+            <form class="relative z-10 space-y-4 md:space-y-8 fade-up">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+                    <div class="space-y-1 md:space-y-2">
+                        <label
+                            class="text-[8px] md:text-[10px] font-bold tracking-[0.2em] uppercase opacity-50 px-2">Nama</label>
+                        <input
+                            class="w-full bg-inv-bg/50 border-0 border-b border-inv-accent/20 focus:ring-0 focus:border-inv-accent py-3 md:py-4 px-3 md:px-4 text-sm md:text-base text-inv-text placeholder:opacity-30 rounded-t-lg transition-all focus:scale-[1.02]"
+                            placeholder="Nama Lengkap" type="text" />
+                    </div>
+                    <div class="space-y-1 md:space-y-2">
+                        <label
+                            class="text-[8px] md:text-[10px] font-bold tracking-[0.2em] uppercase opacity-50 px-2">Jumlah
+                            Tamu</label>
+                        <select
+                            class="w-full bg-inv-bg/50 border-0 border-b border-inv-accent/20 focus:ring-0 focus:border-inv-accent py-3 md:py-4 px-3 md:px-4 text-sm md:text-base text-inv-text rounded-t-lg transition-all focus:scale-[1.02]">
+                            <option>Saya sendiri</option>
+                            <option>Saya + 1 tamu</option>
+                            <option>Saya + 2 tamu</option>
+                        </select>
+                    </div>
+                </div>
+                <button
+                    class="w-full py-4 md:py-6 bg-inv-accent text-white rounded-twelve font-bold tracking-widest uppercase text-xs md:text-sm hover:brightness-95 transition-all shadow-lg flex items-center justify-center gap-2 md:gap-3 btn-hover-effect active:scale-95"
+                    type="submit">Kirim Konfirmasi <span>✨</span></button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Guestbook & Closing -->
+    <main class="relative z-10 max-w-2xl mx-auto px-4 md:px-6 py-12 md:py-20 relative" id="guestbook-section"
+        style="background-image: url(''); background-size: cover; background-position: center;">
+        <div
+            class="absolute top-0 left-0 right-0 h-16 md:h-32 bg-gradient-to-b from-background-light/70 to-transparent dark:from-background-dark/80 dark:to-transparent z-0">
+        </div>
+        <div
+            class="absolute inset-0 bg-gradient-to-b from-background-light/40 via-background-light/20 to-background-light dark:from-background-dark/80 dark:via-background-dark/60 dark:to-background-dark z-0">
+        </div>
+        <div class="fixed inset-0 pointer-events-none z-0" id="flower-container"></div>
+        <div class="relative z-10 bg-white/40 dark:bg-black/40 backdrop-blur-md rounded-2xl md:rounded-3xl p-4 md:p-8">
+            <section class="mb-16 md:mb-24" id="guestbook">
+                <div class="text-center mb-6 md:mb-12 fade-up">
+                    <h2 id="guestbook-title"
+                        class="font-serif text-2xl md:text-3xl lg:text-4xl italic text-[#8D7B68] mb-2 md:mb-4"></h2>
+                    <p id="guestbook-subtitle" class="text-xs md:text-sm uppercase tracking-widest text-[#A89F91]"></p>
+                </div>
+                <div class="guestbook-container mb-8 md:mb-12 p-4 md:p-6 fade-up">
+                    <form class="space-y-3 md:space-y-4" id="wish-form">
+                        <div>
+                            <label
+                                class="block text-[10px] md:text-xs font-medium text-[#8D7B68] mb-1 uppercase tracking-wider"
+                                for="name">Nama Lengkap</label>
+                            <input
+                                class="w-full bg-white/80 border-[#D1C7BD] rounded-lg focus:ring-[#8D7B68] focus:border-[#8D7B68] transition-all focus:scale-[1.02] text-sm md:text-base p-2 md:p-3"
+                                id="name" name="name" placeholder="Masukkan nama Anda" required type="text" />
+                        </div>
+                        <div>
+                            <label
+                                class="block text-[10px] md:text-xs font-medium text-[#8D7B68] mb-1 uppercase tracking-wider"
+                                for="message">Pesan Anda</label>
+                            <textarea
+                                class="w-full bg-white/80 border-[#D1C7BD] rounded-lg focus:ring-[#8D7B68] focus:border-[#8D7B68] transition-all focus:scale-[1.02] text-sm md:text-base p-2 md:p-3"
+                                id="message" name="message" placeholder="Tulis pesan Anda..." required
+                                rows="3"></textarea>
+                        </div>
+                        <button
+                            class="w-full bg-[#8D7B68] text-white py-2 md:py-3 rounded-lg hover:bg-[#766656] transition-colors font-serif italic text-base md:text-lg shadow-md btn-hover-effect active:scale-95"
+                            type="submit">Kirim Pesan</button>
+                    </form>
+                </div>
+                <div id="guestbook-messages"
+                    class="space-y-4 md:space-y-6 max-h-[400px] md:max-h-[500px] overflow-y-auto pr-1 md:pr-2 custom-scrollbar">
+                </div>
+            </section>
+            <section class="text-center py-10 md:py-16 px-2 md:px-4 fade-up">
+                <div class="inline-block mb-4 md:mb-8">
+                    <svg fill="none" height="1" viewBox="0 0 40 1" width="40">
+                        <line stroke="#D1C7BD" x2="40" y1="0.5" y2="0.5" /></svg>
+                </div>
+                <p id="closing-quote"
+                    class="font-serif text-lg md:text-xl lg:text-2xl leading-relaxed text-[#5A5A5A] italic mb-6 md:mb-8 px-2">
+                </p>
+                <div class="space-y-1 md:space-y-2 mb-10 md:mb-16">
+                    <p class="text-[10px] md:text-sm tracking-widest uppercase text-[#A89F91]">Hormat kami,</p>
+                    <h3 id="closing-family" class="font-serif text-2xl md:text-3xl text-[#8D7B68]"></h3>
+                </div>
+                <div class="mt-12 md:mt-20">
+                    <p id="footer-copyright"
+                        class="text-[8px] md:text-[10px] tracking-[0.2em] uppercase text-[#A89F91]"></p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <div class="theme-brown relative" id="footer-section"
+        style="background-image: url(''); background-size: cover; background-position: center;">
+        <div
+            class="absolute top-0 left-0 right-0 h-16 md:h-32 bg-gradient-to-b from-background-light/70 to-transparent dark:from-background-dark/80 dark:to-transparent z-0">
+        </div>
+        <div
+            class="absolute inset-0 bg-gradient-to-b from-background-light/40 via-background-light/20 to-background-light dark:from-background-dark/80 dark:via-background-dark/60 dark:to-background-dark z-0">
+        </div>
+        <footer
+            class="relative z-10 py-8 md:py-12 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-t border-gray-100 dark:border-gray-800 text-center">
+            <div id="footer-brand"
+                class="text-2xl md:text-3xl font-display font-semibold tracking-wider text-primary mb-2 md:mb-4 fade-up">
+            </div>
+            <p id="footer-text"
+                class="text-gray-500 dark:text-gray-400 text-[10px] md:text-sm tracking-widest uppercase mb-4 md:mb-6 fade-up">
+            </p>
+            <div class="flex justify-center items-center gap-4 opacity-50 mb-4 md:mb-8">
+                <div class="h-px w-16 md:w-24 bg-primary/30"></div>
+                <span class="material-symbols-outlined text-primary">favorite</span>
+                <div class="h-px w-16 md:w-24 bg-primary/30"></div>
+            </div>
+            <div id="footer-verse" class="max-w-3xl mx-auto px-4 mb-6 md:mb-8 text-center footer-verse"></div>
+            <div class="inline-flex items-center justify-center p-1 rounded-full bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 cursor-pointer transition-transform duration-200 active:scale-90"
+                id="darkmode-toggle">
+                <span
+                    class="material-icons text-xs md:text-sm p-1 md:p-2 rounded-full text-yellow-500 bg-white shadow-sm dark:bg-transparent dark:text-gray-500 dark:shadow-none">light_mode</span>
+                <span
+                    class="material-icons text-xs md:text-sm p-1 md:p-2 rounded-full text-gray-400 dark:text-blue-400 dark:bg-gray-700 dark:shadow-none">dark_mode</span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/invitation.js"></script>
+</body>
+
+</html>
