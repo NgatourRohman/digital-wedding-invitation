@@ -137,5 +137,30 @@
     "text": "We can't wait to celebrate with you",
     "copyright": "© 2023 Forever & Ever",
     "background": "assets/images/footer-bg.png"
+  },
+  "gift": {
+    "title": "Wedding Gift",
+    "subtitle": "A Token of Love",
+    "description": "Your presence and prayers at our wedding mean the world to us. However, if you wish to honor us with a gift, we have provided our details below.",
+    "ewallet": {
+      "name": "E-Wallet",
+      "icon": "qr_code_2",
+      "qrCode": "assets/images/qr-dana.png",
+      "provider": "DANA / OVO",
+      "accountNumber": "0812-3456-7890",
+      "accountName": "a.n Sarah Williams"
+    },
+    "sendGift": {
+      "name": "Send Gift",
+      "icon": "featured_seasonal_and_gifts",
+      "address": {
+        "name": "Sarah Williams",
+        "street": "123 Wedding Street",
+        "city": "London",
+        "country": "UK",
+        "full": "123 Wedding Street, London, UK"
+      },
+      "mapUrl": "https://maps.google.com/?q=123+Wedding+Street+London"
+    }
   }
 }

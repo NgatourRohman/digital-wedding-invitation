@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         populateEvents(data.events);
         populateLocation(data.location);
         populateRsvp(data.rsvp);
+        populateGift(data.gift, data.couple);
         populateGuestbook(data.guestbook);
         populateClosing(data.closing);
         populateFooter(data.footer);
@@ -127,7 +128,10 @@ function populateVerses(verses) {
     });
 }
 
+let coupleData = null;
+
 function populateCouple(couple) {
+    coupleData = couple;
     const groom = couple.groom;
     const bride = couple.bride;
 
@@ -229,6 +233,50 @@ function populateLocation(location) {
 function populateRsvp(rsvp) {
     document.getElementById('rsvp-title').textContent = rsvp.title;
     document.getElementById('rsvp-description').textContent = rsvp.description;
+}
+
+function populateGift(gift, couple) {
+    if (!gift) return;
+
+    document.getElementById('gift-subtitle').textContent = gift.subtitle || '';
+    document.getElementById('gift-title').textContent = gift.title || '';
+    document.getElementById('gift-description').textContent = gift.description || '';
+
+    const ewallet = gift.ewallet;
+    if (ewallet) {
+        document.getElementById('gift-ewallet-icon').textContent = ewallet.icon || 'qr_code_2';
+        document.getElementById('gift-ewallet-title').textContent = ewallet.name || '';
+        const qrImg = document.getElementById('gift-ewallet-qr');
+        if (ewallet.qrCode) {
+            qrImg.src = ewallet.qrCode;
+            qrImg.style.display = 'block';
+        } else {
+            qrImg.style.display = 'none';
+        }
+        document.getElementById('gift-ewallet-provider').textContent = ewallet.provider || '';
+        document.getElementById('gift-ewallet-number').textContent = ewallet.accountNumber || '';
+        document.getElementById('gift-ewallet-account-name').textContent = ewallet.accountName || '';
+    }
+
+    const sendGift = gift.sendGift;
+    if (sendGift) {
+        document.getElementById('gift-send-icon').textContent = sendGift.icon || 'featured_seasonal_and_gifts';
+        document.getElementById('gift-send-title').textContent = sendGift.name || '';
+        const address = sendGift.address;
+        if (address) {
+            document.getElementById('gift-address-name').textContent = address.name || '';
+            document.getElementById('gift-address-street').textContent = address.street || '';
+            document.getElementById('gift-address-city').textContent = address.city ? (address.city + (address.country ? ', ' + address.country : '')) : '';
+        }
+        const mapLink = document.getElementById('gift-map-link');
+        if (sendGift.mapUrl) {
+            mapLink.href = sendGift.mapUrl;
+        }
+    }
+
+    const groomName = couple?.groom?.name?.split(' ')[0] || 'John';
+    const brideName = couple?.bride?.name?.split(' ')[0] || 'Sarah';
+    document.getElementById('gift-couple-names').innerHTML = `${groomName} &amp; ${brideName}`;
 }
 
 function populateGuestbook(guestbook) {
