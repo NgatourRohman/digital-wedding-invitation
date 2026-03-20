@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         setBackground('footer-section', data.footer.background);
 
         initDarkMode();
+        initCountdown();
         initGuestbookForm();
         initPetals();
         initScrollAnimations();
@@ -71,6 +72,33 @@ function populateHero(hero) {
     document.getElementById('hero-date').textContent = hero.date;
     document.getElementById('hero-location').textContent = hero.location;
     document.getElementById('hero-button-text').textContent = hero.buttonText;
+}
+
+function initCountdown() {
+    const weddingDate = new Date("April 7, 2026 09:00:00").getTime();
+    const countdownInterval = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("countdown-days").innerHTML = days.toString().padStart(2, '0');
+        document.getElementById("countdown-hours").innerHTML = hours.toString().padStart(2, '0');
+        document.getElementById("countdown-minutes").innerHTML = minutes.toString().padStart(2, '0');
+        document.getElementById("countdown-seconds").innerHTML = seconds.toString().padStart(2, '0');
+
+        if (distance < 0) {
+            clearInterval(countdownInterval);
+            document.getElementById("countdown-section").innerHTML = `
+                <div class="text-center py-16">
+                    <div class="font-serif text-3xl md:text-5xl text-primary">Bahagia Selamanya</div>
+                </div>
+            `;
+        }
+    }, 1000);
 }
 
 function populateVerses(verses) {
