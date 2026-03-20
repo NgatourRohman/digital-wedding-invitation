@@ -159,7 +159,6 @@ html {
     pointer-events: none;
     z-index: 0;
     animation: float linear infinite;
-    /* Durasi dan delay harus diatur inline atau via kelas tambahan */
 }
 
 @keyframes pulse {
@@ -206,7 +205,6 @@ html {
     animation: moveLine 3s linear infinite;
     opacity: 0.5;
     pointer-events: none;
-    /* agar tidak mengganggu klik */
 }
 
 @keyframes zoomInOut {
@@ -244,7 +242,6 @@ html {
    ============================================ */
 .glass {
     background: rgba(255, 255, 255, 0.8);
-    /* fallback */
     background: var(--glass-bg-light);
     backdrop-filter: blur(8px);
     border: 1px solid var(--glass-border-light);
@@ -258,9 +255,6 @@ html {
 
 /* Specific components using glass */
 .glass-card {
-    composes: glass;
-    /* jika menggunakan CSS Modules, atau cukup tambahkan kelas secara manual */
-    /* jika tidak, duplikasi properti: */
     background: rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -563,8 +557,6 @@ html {
 /* ============================================
    Responsive Adjustments (Mobile First)
    ============================================ */
-/* Base mobile styles (already defined above) */
-/* Additional adjustments for small screens */
 @media (max-width: 768px) {
     .radial-item-1 {
         transform: translate(80px, -50px) !important;
@@ -725,12 +717,10 @@ html {
         font-size: 1rem !important;
     }
 
-    /* Hide flower particles on mobile */
     #flower-container {
         display: none !important;
     }
 
-    /* Reduce blur intensity on mobile for performance */
     .backdrop-blur-md {
         backdrop-filter: blur(4px) !important;
     }
@@ -739,7 +729,6 @@ html {
         backdrop-filter: blur(2px) !important;
     }
 
-    /* Ensure touch targets are large enough */
     button,
     a.btn-hover-effect,
     #nav-links a.bg-primary,
