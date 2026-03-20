@@ -137,5 +137,30 @@
     "text": "Kami tidak sabar untuk merayakan bersama Anda",
     "copyright": "© 2026 Selamanya & Selamanya",
     "background": "assets/images/footer-bg.png"
+  },
+  "gift": {
+    "title": "Hadiah Pernikahan",
+    "subtitle": "Tanda Kasih",
+    "description": "Kedatangan dan doa restu Anda sudah menjadi hadiah terindah bagi kami. Namun jika Anda ingin memberikan hadiah, berikut adalah detail yang dapat digunakan.",
+    "ewallet": {
+      "name": "Dompet Digital",
+      "icon": "qr_code_2",
+      "qrCode": "assets/images/qr-dana.png",
+      "provider": "DANA",
+      "accountNumber": "0878-7594-0179",
+      "accountName": "a.n Diah Parniasih"
+    },
+    "sendGift": {
+      "name": "Kirim Hadiah",
+      "icon": "featured_seasonal_and_gifts",
+      "address": {
+        "name": "Diah Parniasih",
+        "street": "Desa Yasaratu, Dusun Kertajaya, RT 01 / RW 05, Kecamatan Mangunjaya, Kabupaten Pangandaran, Jawa Barat",
+        "city": "Pangandaran",
+        "country": "Indonesia",
+        "full": "Desa Yasaratu, Dusun Kertajaya, RT 01 / RW 05, Kecamatan Mangunjaya, Kabupaten Pangandaran, Jawa Barat"
+      },
+      "mapUrl": "https://maps.app.goo.gl/FreNLLPPyBpG7hfL7"
+    }
   }
 }
