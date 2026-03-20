@@ -554,6 +554,32 @@ html {
     transform: translateX(0);
 }
 
+[dir="rtl"] {
+    font-family: 'Amiri', 'Playfair Display', serif;
+    line-height: 1.7;
+    letter-spacing: 0.5px;
+    font-weight: 400;
+}
+
+#hero-greeting p[dir="rtl"] {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+#couple-basmalah {
+    border-top: 1px solid rgba(166, 138, 115, 0.15);
+    border-bottom: 1px solid rgba(166, 138, 115, 0.15);
+    padding: 1.5rem 0;
+    margin: 1rem 0;
+}
+
+.dark #couple-basmalah {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark [dir="rtl"] {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
 /* ============================================
    Responsive Adjustments (Mobile First)
    ============================================ */

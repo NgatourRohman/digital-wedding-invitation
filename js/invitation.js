@@ -66,6 +66,7 @@ function populateNav(nav) {
 }
 
 function populateHero(hero) {
+    const greetingDiv = document.getElementById('hero-greeting');
     const heroImg = document.getElementById('hero-image');
     heroImg.src = hero.image;
     heroImg.classList.add('hero-zoom');
@@ -75,6 +76,12 @@ function populateHero(hero) {
     document.getElementById('hero-date').textContent = hero.date;
     document.getElementById('hero-location').textContent = hero.location;
     document.getElementById('hero-button-text').textContent = hero.buttonText;
+    if (greetingDiv && hero.greeting) {
+        const arabicEl = greetingDiv.querySelector('p[dir="rtl"]');
+        const transEl = greetingDiv.querySelector('.italic');
+        if (arabicEl) arabicEl.textContent = hero.greeting;
+        if (transEl && hero.greetingTranslation) transEl.textContent = hero.greetingTranslation;
+    }
 }
 
 function initCountdown() {
@@ -148,6 +155,18 @@ function populateCouple(couple) {
     const brideImg = document.getElementById('bride-image');
     brideImg.style.backgroundImage = `url('${bride.image}')`;
     brideImg.classList.add('couple-image');
+
+    const basmalahDiv = document.getElementById('couple-basmalah');
+    if (basmalahDiv && couple.basmalah) {
+        const arabicEl = basmalahDiv.querySelector('p[dir="rtl"]');
+        const msgEl = basmalahDiv.querySelector('.italic');
+        if (arabicEl) {
+            arabicEl.textContent = couple.basmalah;
+        }
+        if (msgEl && couple.basmalahMessage) {
+            msgEl.textContent = couple.basmalahMessage;
+        }
+    }
 }
 
 function populateTimeline(timeline) {

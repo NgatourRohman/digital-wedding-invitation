@@ -8,6 +8,8 @@
     ]
   },
   "hero": {
+    "greeting": "ٱلسَّلَامُ عَلَيْكُمْ وَرَحْمَةُ ٱللَّٰهِ وَبَرَكَاتُهُ",
+    "greetingTranslation": "Semoga keselamatan, rahmat, dan berkah Allah tercurah kepada Anda",
     "subtitle": "Kami mengundang Anda untuk merayakan pernikahan kami",
     "groom": "Hari",
     "bride": "Diah",
@@ -32,6 +34,9 @@
   },
   "coupleBackground": "assets/images/couple-bg.png",
   "couple": {
+    "basmalah": "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ",
+    "basmalahTranslation": "Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang",
+    "basmalahMessage": "Maha Suci Allah yang telah menciptakan mahluk-Nya berpasang-pasangan. Ya Allah, perkenankanlah kami merangkaikan kasih sayang yang Kau ciptakan diantara kami untuk mengikuti Sunnah Rasul-Mu dalam rangka membentuk keluarga yang sakinah, mawaddah, warahmah.",
     "groom": {
       "name": "Hari Agung",
       "father": "Dadang",
