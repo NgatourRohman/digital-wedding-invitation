@@ -117,6 +117,58 @@
         </header>
     </div>
 
+    <!-- Countdown Section -->
+    <section class="relative py-12 md:py-20 px-4 overflow-hidden" id="countdown-section">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute top-0 left-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+        </div>
+        <div class="relative z-10 max-w-4xl mx-auto text-center">
+            <h2 class="font-serif text-2xl md:text-3xl text-primary mb-2 fade-up">Counting Down to Forever</h2>
+            <p class="text-sm md:text-base text-gray-600 dark:text-gray-400 mb-8 md:mb-10 fade-up">Our wedding day is
+                approaching</p>
+
+            <!-- Container countdown dengan gaya glassmorphic -->
+            <div class="relative w-full max-w-lg mx-auto flex justify-center items-center">
+                <div
+                    class="glass-card rounded-full w-48 h-48 md:w-64 md:h-64 flex flex-col items-center justify-center z-20 shadow-xl border-white/50 dark:border-white/10">
+                    <span class="text-6xl md:text-8xl font-serif text-primary" id="countdown-days">00</span>
+                    <span
+                        class="text-[10px] md:text-xs uppercase tracking-[0.3em] mt-2 font-medium opacity-70">Days</span>
+                </div>
+                <div
+                    class="absolute w-[280px] h-[280px] md:w-[380px] md:h-[380px] border border-primary/10 rounded-full z-0">
+                </div>
+                <div
+                    class="absolute w-[320px] h-[320px] md:w-[420px] md:h-[420px] border border-primary/5 rounded-full z-0">
+                </div>
+
+                <!-- Elemen countdown tambahan (jam, menit, detik) -->
+                <div class="absolute radial-item-1 z-30" style="transform: translate(110px, -60px);">
+                    <div
+                        class="glass-card rounded-full w-20 h-20 md:w-24 md:h-24 flex flex-col items-center justify-center">
+                        <span class="text-xl md:text-2xl font-serif" id="countdown-hours">00</span>
+                        <span class="text-[8px] uppercase tracking-widest opacity-60">Hours</span>
+                    </div>
+                </div>
+                <div class="absolute radial-item-2 z-30" style="transform: translate(130px, 80px);">
+                    <div
+                        class="glass-card rounded-full w-20 h-20 md:w-24 md:h-24 flex flex-col items-center justify-center">
+                        <span class="text-xl md:text-2xl font-serif" id="countdown-minutes">00</span>
+                        <span class="text-[8px] uppercase tracking-widest opacity-60">Mins</span>
+                    </div>
+                </div>
+                <div class="absolute radial-item-3 z-30" style="transform: translate(-130px, 50px);">
+                    <div
+                        class="glass-card rounded-full w-20 h-20 md:w-24 md:h-24 flex flex-col items-center justify-center">
+                        <span class="text-xl md:text-2xl font-serif" id="countdown-seconds">00</span>
+                        <span class="text-[8px] uppercase tracking-widest opacity-60">Secs</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Verses Section -->
     <div id="verses-section" class="theme-orange relative"
         style="background-image: url(''); background-size: cover; background-position: center;">
