@@ -162,5 +162,13 @@
       },
       "mapUrl": "https://maps.app.goo.gl/FreNLLPPyBpG7hfL7"
     }
+  },
+    "music": {
+    "enabled": true,
+    "url": "assets/music/wedding-song.mp3",
+    "title": " The Way You Look At Me",
+    "artist": "Nyoman Paul, Andi Rianto",
+    "autoplay": true,
+    "loop": true
   }
 }

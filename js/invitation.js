@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         populateClosing(data.closing);
         populateFooter(data.footer);
         populateFooterVerse(data.footerVerse);
+        populateMusic(data.music);
 
         setBackground('hero-bg', data.hero.background);
         setBackground('verses-section', data.versesBackground);
@@ -334,6 +335,85 @@ function populateFooterVerse(verse) {
             <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base italic max-w-xl mx-auto">${verse.translation}</p>
         </div>
     `;
+}
+
+function populateMusic(music) {
+    const player = document.getElementById('music-player');
+    const audio = document.getElementById('bg-music');
+    const playBtn = document.getElementById('play-pause-btn');
+    const playIcon = document.getElementById('play-icon');
+    const pauseIcon = document.getElementById('pause-icon');
+
+    if (!music || !music.enabled) {
+        if (player) player.style.display = 'none';
+        return;
+    }
+
+    player.style.display = 'flex';
+
+    if (music.url) {
+        audio.src = music.url;
+    }
+
+    if (music.title) document.getElementById('music-title').innerText = music.title;
+    if (music.artist) document.getElementById('music-artist').innerText = music.artist;
+
+    audio.loop = music.loop || true;
+
+    let autoplayAttempted = false;
+    function attemptAutoplay() {
+        if (!music.autoplay || autoplayAttempted) return;
+        autoplayAttempted = true;
+        audio.play().then(() => {
+            playIcon.classList.add('hidden');
+            pauseIcon.classList.remove('hidden');
+        }).catch(error => {
+            console.log('Autoplay blocked. User interaction required.');
+            playBtn.classList.add('animate-pulse');
+            setTimeout(() => playBtn.classList.remove('animate-pulse'), 3000);
+        });
+    }
+
+    if (audio.readyState >= 2) {
+        attemptAutoplay();
+    } else {
+        audio.addEventListener('canplaythrough', attemptAutoplay, { once: true });
+    }
+
+    let isPlaying = false;
+    playBtn.addEventListener('click', () => {
+        if (isPlaying) {
+            audio.pause();
+            isPlaying = false;
+            playIcon.classList.remove('hidden');
+            pauseIcon.classList.add('hidden');
+        } else {
+            audio.play().then(() => {
+                isPlaying = true;
+                playIcon.classList.add('hidden');
+                pauseIcon.classList.remove('hidden');
+            }).catch(e => console.log('Playback failed:', e));
+        }
+    });
+
+    audio.addEventListener('play', () => {
+        isPlaying = true;
+        playIcon.classList.add('hidden');
+        pauseIcon.classList.remove('hidden');
+    });
+    audio.addEventListener('pause', () => {
+        isPlaying = false;
+        playIcon.classList.remove('hidden');
+        pauseIcon.classList.add('hidden');
+    });
+
+    if (music.autoplay) {
+        document.body.addEventListener('click', () => {
+            if (audio.paused && !isPlaying) {
+                audio.play().catch(() => { });
+            }
+        }, { once: true });
+    }
 }
 
 function initDarkMode() {
