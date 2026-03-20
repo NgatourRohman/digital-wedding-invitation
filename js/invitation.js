@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         populateClosing(data.closing);
         populateFooter(data.footer);
         populateFooterVerse(data.footerVerse);
+        populateCredit(data.credit);
         populateMusic(data.music);
 
         setBackground('hero-bg', data.hero.background);
@@ -336,6 +337,33 @@ function populateFooterVerse(verse) {
             <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base italic max-w-xl mx-auto">${verse.translation}</p>
         </div>
     `;
+}
+
+function populateCredit(credit) {
+    if (!credit) return;
+
+    const msgEl = document.getElementById('credit-message');
+    if (msgEl && credit.message && credit.coupleCredit) {
+        msgEl.innerHTML = `${credit.message} <span class="font-semibold italic">${credit.coupleCredit}</span>`;
+    }
+
+    const designerEl = document.getElementById('credit-designer');
+    if (designerEl) {
+        if (credit.designer && credit.designerUrl) {
+            designerEl.innerHTML = `Designed & Developed by <a href="${credit.designerUrl}" target="_blank" rel="noopener noreferrer" class="font-medium hover:text-primary transition-colors">${credit.designer}</a>`;
+        } else if (credit.designer) {
+            designerEl.innerHTML = `Designed & Developed by ${credit.designer}`;
+        }
+    }
+
+    const imgContainer = document.getElementById('credit-image-container');
+    if (imgContainer && credit.showImage && credit.imageUrl) {
+        const imgDiv = imgContainer.querySelector('.bg-cover');
+        if (imgDiv) {
+            imgDiv.style.backgroundImage = `url('${credit.imageUrl}')`;
+            imgContainer.classList.remove('hidden');
+        }
+    }
 }
 
 function populateMusic(music) {

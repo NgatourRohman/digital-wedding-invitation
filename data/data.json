@@ -135,7 +135,7 @@
   "footer": {
     "brand": "J & S",
     "text": "We can't wait to celebrate with you",
-    "copyright": "© 2023 Forever & Ever",
+    "copyright": "© 2026 Forever & Ever",
     "background": "assets/images/footer-bg.png"
   },
   "gift": {
@@ -170,5 +170,13 @@
     "artist": "Christina Perri",
     "autoplay": true,
     "loop": true
+  },
+   "credit": {
+    "designer": "Arthur",
+    "designerUrl": "https://ngatourrohman.github.io",
+    "message": "A celebration of love for",
+    "coupleCredit": "John & Sarah",
+    "showImage": true,
+    "imageUrl": "assets/images/wedding-credit.png"
   }
 }
