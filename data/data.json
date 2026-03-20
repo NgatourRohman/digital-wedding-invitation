@@ -162,5 +162,13 @@
       },
       "mapUrl": "https://maps.google.com/?q=123+Wedding+Street+London"
     }
+  },
+    "music": {
+    "enabled": true,
+    "url": "assets/music/wedding-song.mp3",
+    "title": "A Thousand Years",
+    "artist": "Christina Perri",
+    "autoplay": true,
+    "loop": true
   }
 }
