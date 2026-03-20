@@ -27,6 +27,44 @@ body {
     color: #F8F5F2;
 }
 
+.animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 20px 40px -15px rgba(142, 124, 109, 0.2);
+}
+
+.dark .glass-card {
+    background: rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark .glass-card:hover {
+    background: rgba(0, 0, 0, 0.4);
+}
+
 @media (max-width: 640px) {
 
     main {
