@@ -506,22 +506,6 @@
         </div>
     </div>
 
-    <script>
-        function copyGiftNumber(text, btn) {
-            navigator.clipboard.writeText(text).then(() => {
-                const originalText = btn.innerText;
-                btn.innerText = 'COPIED!';
-                btn.classList.add('bg-primary', 'text-white');
-                setTimeout(() => {
-                    btn.innerText = originalText;
-                    btn.classList.remove('bg-primary', 'text-white');
-                }, 2000);
-            }).catch(err => {
-                console.error('Failed to copy: ', err);
-            });
-        }
-    </script>
-
     <!-- Guestbook & Closing -->
     <main class="relative z-10 max-w-2xl mx-auto px-4 md:px-6 py-12 md:py-20 relative" id="guestbook-section"
         style="background-image: url(''); background-size: cover; background-position: center;">

@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         initScrollAnimations();
         initNavbarScroll();
         initMobileMenu();
+        copyGiftNumber();
         addHoverEffects();
     } catch (error) {
         console.error('Error loading data:', error);
@@ -277,6 +278,20 @@ function populateGift(gift, couple) {
     const groomName = couple?.groom?.name?.split(' ')[0] || 'John';
     const brideName = couple?.bride?.name?.split(' ')[0] || 'Sarah';
     document.getElementById('gift-couple-names').innerHTML = `${groomName} &amp; ${brideName}`;
+}
+
+function copyGiftNumber(text, btn) {
+    navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.innerText;
+        btn.innerText = 'COPIED!';
+        btn.classList.add('bg-primary', 'text-white');
+        setTimeout(() => {
+            btn.innerText = originalText;
+            btn.classList.remove('bg-primary', 'text-white');
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy: ', err);
+    });
 }
 
 function populateGuestbook(guestbook) {
