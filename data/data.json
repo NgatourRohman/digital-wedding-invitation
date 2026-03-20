@@ -135,7 +135,7 @@
   "footer": {
     "brand": "H & D",
     "text": "Kami tidak sabar untuk merayakan bersama Anda",
-    "copyright": "© 2026 Selamanya & Selamanya",
+    "copyright": "© 2026 Selama-lamanya",
     "background": "assets/images/footer-bg.png"
   },
   "gift": {
@@ -170,5 +170,13 @@
     "artist": "Nyoman Paul, Andi Rianto",
     "autoplay": true,
     "loop": true
+  },
+  "credit": {
+    "designer": "Arthur",
+    "designerUrl": "https://ngatourrohman.github.io",
+    "message": "A celebration of love for",
+    "coupleCredit": "Hari & Diah",
+    "showImage": true,
+    "imageUrl": "assets/images/wedding-credit.png"
   }
 }

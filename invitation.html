@@ -604,6 +604,72 @@
         </footer>
     </div>
 
+    <!-- Credit Section (Designer Attribution) -->
+    <div class="relative overflow-hidden py-12 md:py-20 bg-background-light dark:bg-background-dark"
+        id="credit-section">
+        <!-- Decorative floral ornaments (like in example) -->
+        <div class="absolute left-4 top-0 opacity-20 pointer-events-none">
+            <span class="material-symbols-outlined text-[100px] md:text-[120px] text-accent">local_florist</span>
+        </div>
+        <div class="absolute right-4 bottom-12 opacity-20 pointer-events-none rotate-180">
+            <span class="material-symbols-outlined text-[100px] md:text-[120px] text-accent">local_florist</span>
+        </div>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-4">
+            <div class="glass-card rounded-2xl p-8 md:p-12 text-center shadow-xl">
+                <div class="flex flex-col items-center gap-6">
+                    <div class="flex items-center gap-2 text-primary/60">
+                        <span class="material-symbols-outlined text-sm" data-icon="favorite">favorite</span>
+                        <span class="uppercase tracking-[0.2em] text-xs font-bold">The Celebration</span>
+                        <span class="material-symbols-outlined text-sm" data-icon="favorite">favorite</span>
+                    </div>
+                    <h4 class="text-primary text-2xl md:text-3xl font-light leading-normal tracking-wide px-4"
+                        id="credit-message">
+                        <!-- akan diisi JS -->
+                    </h4>
+                    <div class="h-px w-12 bg-primary/30 my-2"></div>
+                    <p class="text-primary/70 text-base font-normal leading-normal italic" id="credit-designer">
+                        <!-- akan diisi JS -->
+                    </p>
+                    <div id="credit-image-container" class="w-full mt-6 hidden">
+                        <div
+                            class="w-full max-w-md mx-auto bg-center bg-no-repeat bg-cover aspect-[21/9] rounded-lg shadow-sm grayscale-[30%] opacity-80">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation links (Back to Top, RSVP, Gift) -->
+            <footer class="flex flex-col gap-8 px-5 py-12 text-center">
+                <div class="flex flex-wrap items-center justify-center gap-8 md:gap-16">
+                    <a href="#" id="back-to-top"
+                        class="text-primary hover:text-primary/70 transition-colors text-sm font-medium tracking-widest uppercase flex items-center gap-2">
+                        <span class="material-symbols-outlined text-xs">arrow_upward</span>
+                        Back to Top
+                    </a>
+                    <a href="#rsvp"
+                        class="text-primary hover:text-primary/70 transition-colors text-sm font-medium tracking-widest uppercase flex items-center gap-2">
+                        <span class="material-symbols-outlined text-xs">event_available</span>
+                        RSVP
+                    </a>
+                    <a href="#gift-section"
+                        class="text-primary hover:text-primary/70 transition-colors text-sm font-medium tracking-widest uppercase flex items-center gap-2">
+                        <span class="material-symbols-outlined text-xs">card_giftcard</span>
+                        Gift Registry
+                    </a>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <p class="text-primary/60 text-xs font-normal leading-normal tracking-widest uppercase">
+                        © 2026 Hari & Diah Wedding
+                    </p>
+                    <p class="text-primary/40 text-[10px] uppercase tracking-[0.3em]">
+                        Together Forever
+                    </p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
     <!-- Floating Music Player -->
     <div id="music-player"
         class="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md rounded-full shadow-lg p-2 transition-all duration-300 hover:scale-105"
