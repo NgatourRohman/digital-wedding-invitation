@@ -61,7 +61,7 @@ function setBackground(elementId, imagePath) {
 
 function showNotification(message, type = 'success') {
     const toast = document.createElement('div');
-    toast.className = `fixed bottom-4 right-4 px-4 py-2 rounded shadow-lg text-white z-50 transition-opacity duration-300 ${type === 'success' ? 'bg-green-500' : 'bg-red-500'
+    toast.className = `fixed bottom-4 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-full text-white text-sm z-50 transition-all duration-300 ${type === 'success' ? 'bg-green-500' : 'bg-red-500'
         }`;
     toast.innerText = message;
     document.body.appendChild(toast);
@@ -295,7 +295,7 @@ async function initRsvpForm() {
 
     rsvpForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const name = rsvpForm.querySelector('input[placeholder="Masukkan nama Anda"]').value.trim();
+        const name = rsvpForm.querySelector('input[placeholder="Nama Lengkap"]').value.trim();
         const guestsSelect = rsvpForm.querySelector('select');
         const guests = guestsSelect.options[guestsSelect.selectedIndex].text;
         const status = 'Pending';
