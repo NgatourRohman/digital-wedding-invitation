@@ -1,4 +1,4 @@
-const BACKEND_URL = 'https://script.google.com/macros/s/AKfycbwaOKmlzYl5fTSARxB95hamAIXn-3nxAhqoRiCrnua_hSRw2HVgF2uuwQ3PbybtOMYuyg/exec';
+const BACKEND_URL = 'https://script.google.com/macros/s/AKfycbzTQWJD1JyVz00UUg-87ttASCE8xRy-xYLDJYeQpmO6l2NLRrFWWowUnL-yZmpKjxjVjQ/exec';
 const BACKEND_PASSWORD = 'weddingInvitation123';
 
 document.addEventListener('DOMContentLoaded', async () => {
