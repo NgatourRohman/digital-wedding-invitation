@@ -111,6 +111,11 @@
     "description": "Please let us know if you can attend so we can prepare accordingly.",
     "background": "assets/images/rsvp-bg.png"
   },
+  "guestbook": {
+    "title": "Guest Book",
+    "subtitle": "Leave a message for the couple",
+    "background": "assets/images/guestbook-bg.png"
+  },
   "closing": {
     "quote": "\"It would be an honor and a joy for our family if you would attend and give your blessings to the couple.\"",
     "family": "The Families"
