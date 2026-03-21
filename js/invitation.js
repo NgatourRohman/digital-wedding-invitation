@@ -474,11 +474,10 @@ async function initGuestbookForm() {
                 submitBtn.innerHTML = '<span class="loading-spinner"></span> Sending...';
                 submitBtn.disabled = true;
 
-                let newMessage = null;
-
                 try {
-                    const response = await fetch(BACKEND_URL, {
+                    await fetch(BACKEND_URL, {
                         method: 'POST',
+                        mode: 'no-cors',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
                             action: 'guestbook',
@@ -486,32 +485,26 @@ async function initGuestbookForm() {
                             data: { name, message }
                         })
                     });
-                    const result = await response.json();
-                    if (result.success) {
-                        newMessage = document.createElement('div');
-                        newMessage.className = 'guestbook-message animate-pulse fade-up';
-                        newMessage.innerHTML = `
-                            <div class="flex justify-between items-center mb-2">
-                                <h4 class="font-serif font-bold text-[#8D7B68]">${escapeHtml(name)}</h4>
-                                <span class="text-[10px] text-gray-400 uppercase tracking-tighter">Just now</span>
-                            </div>
-                            <p class="text-sm leading-relaxed text-[#5A5A5A]">${escapeHtml(message)}</p>
-                        `;
-                        messagesList.prepend(newMessage);
-                        wishForm.reset();
-                        showNotification('Your message has been sent!', 'success');
-                    } else {
-                        throw new Error(result.error || 'Unknown error');
-                    }
+
+                    const newMessage = document.createElement('div');
+                    newMessage.className = 'guestbook-message animate-pulse fade-up';
+                    newMessage.innerHTML = `
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="font-serif font-bold text-[#8D7B68]">${escapeHtml(name)}</h4>
+                            <span class="text-[10px] text-gray-400 uppercase tracking-tighter">Just now</span>
+                        </div>
+                        <p class="text-sm leading-relaxed text-[#5A5A5A]">${escapeHtml(message)}</p>
+                    `;
+                    messagesList.prepend(newMessage);
+                    wishForm.reset();
+                    showNotification('Your message has been sent!', 'success');
                 } catch (error) {
                     console.error('Error sending guestbook:', error);
                     showNotification('Failed to send message. Please try again.', 'error');
                 } finally {
                     submitBtn.innerHTML = originalText;
                     submitBtn.disabled = false;
-                    if (newMessage) {
-                        setTimeout(() => newMessage.classList.remove('animate-pulse'), 2000);
-                    }
+                    setTimeout(() => newMessage?.classList.remove('animate-pulse'), 2000);
                 }
             }
         });
@@ -540,8 +533,9 @@ async function initRsvpForm() {
         submitBtn.disabled = true;
 
         try {
-            const response = await fetch(BACKEND_URL, {
+            await fetch(BACKEND_URL, {
                 method: 'POST',
+                mode: 'no-cors',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     action: 'rsvp',
@@ -549,13 +543,8 @@ async function initRsvpForm() {
                     data: { name, guests, status }
                 })
             });
-            const result = await response.json();
-            if (result.success) {
-                showNotification('Thank you for your RSVP!', 'success');
-                rsvpForm.reset();
-            } else {
-                throw new Error(result.error || 'Unknown error');
-            }
+            showNotification('Thank you for your RSVP!', 'success');
+            rsvpForm.reset();
         } catch (error) {
             console.error('Error sending RSVP:', error);
             showNotification('Failed to send RSVP. Please try again.', 'error');
