@@ -1,4 +1,4 @@
-const BACKEND_URL = 'https://script.google.com/macros/s/AKfycbxMUZehvdaYnuMk3cQF--raJCW1Fn3SsjxTQUPkULYQMReWuyA1oQyzRZgZERLd78DIAQ/exec';
+const BACKEND_URL = 'https://script.google.com/macros/s/AKfycbw2NNlimnPO-FST9RQ0wfC0sjvD-SPOK9uzaE7w8bQYVYqUgNyJeWKYvRrS__YQ__zA/exec';
 const BACKEND_PASSWORD = 'weddingInvitation123';
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -271,19 +271,19 @@ async function initRsvpForm() {
 
     rsvpForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const name = rsvpForm.querySelector('input[placeholder="Full Name"]').value.trim();
+        const name = rsvpForm.querySelector('input[placeholder="Masukkan nama Anda"]').value.trim();
         const guestsSelect = rsvpForm.querySelector('select');
         const guests = guestsSelect.options[guestsSelect.selectedIndex].text;
         const status = 'Pending';
 
         if (!name) {
-            showNotification('Please enter your name.', 'error');
+            showNotification('Silakan masukkan nama Anda.', 'error');
             return;
         }
 
         const submitBtn = rsvpForm.querySelector('button[type="submit"]');
         const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = '<span class="loading-spinner"></span> Sending...';
+        submitBtn.innerHTML = '<span class="loading-spinner"></span> Sedang mengirim...';
         submitBtn.disabled = true;
 
         try {
@@ -297,11 +297,11 @@ async function initRsvpForm() {
                     data: { name, guests, status }
                 })
             });
-            showNotification('Thank you for your RSVP!', 'success');
+            showNotification('Terima kasih atas konfirmasi kehadiran Anda!', 'success');
             rsvpForm.reset();
         } catch (error) {
-            console.error('Error sending RSVP:', error);
-            showNotification('Failed to send RSVP. Please try again.', 'error');
+            console.error('Terjadi kesalahan saat mengirim RSVP:', error);
+            showNotification('Gagal mengirim RSVP. Silakan coba lagi.', 'error');
         } finally {
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
@@ -356,7 +356,7 @@ function populateGift(gift, couple) {
 function copyGiftNumber(text, btn) {
     navigator.clipboard.writeText(text).then(() => {
         const originalText = btn.innerText;
-        btn.innerText = 'COPIED!';
+        btn.innerText = 'Telah disalin!';
         btn.classList.add('bg-primary', 'text-white');
         setTimeout(() => {
             btn.innerText = originalText;
@@ -375,23 +375,23 @@ async function fetchGuestbookMessages() {
         if (result.success) {
             return result.messages;
         } else {
-            console.error('Failed to fetch guestbook:', result.error);
+            console.error('Gagal mengambil buku tamu:', result.error);
             return [];
         }
     } catch (error) {
-        console.error('Error fetching guestbook:', error);
+        console.error('Terjadi kesalahan saat memuat buku tamu:', error);
         return [];
     }
 }
 
 function formatTime(timestamp) {
-    if (!timestamp) return 'Just now';
+    if (!timestamp) return 'Baru saja';
     const date = new Date(timestamp);
     const now = new Date();
     const diff = Math.floor((now - date) / 1000);
-    if (diff < 60) return 'Just now';
-    if (diff < 3600) return `${Math.floor(diff / 60)} minutes ago`;
-    if (diff < 86400) return `${Math.floor(diff / 3600)} hours ago`;
+    if (diff < 60) return 'Baru saja';
+    if (diff < 3600) return `${Math.floor(diff / 60)} beberapa menit yang lalu`;
+    if (diff < 86400) return `${Math.floor(diff / 3600)} beberapa jam yang lalu`;
     return date.toLocaleDateString();
 }
 
@@ -400,7 +400,7 @@ function renderGuestbookMessages(messages) {
     if (!container) return;
     container.innerHTML = '';
     if (!messages.length) {
-        container.innerHTML = '<div class="text-center text-gray-400 py-8">No messages yet. Be the first to leave a wish!</div>';
+        container.innerHTML = '<div class="text-center text-gray-400 py-8">Belum ada pesan. Jadilah yang pertama untuk mengirimkan ucapan!</div>';
         return;
     }
     messages.forEach(msg => {
@@ -440,7 +440,7 @@ async function initGuestbookForm() {
             if (name && message) {
                 const submitBtn = wishForm.querySelector('button[type="submit"]');
                 const originalText = submitBtn.innerHTML;
-                submitBtn.innerHTML = '<span class="loading-spinner"></span> Sending...';
+                submitBtn.innerHTML = '<span class="loading-spinner"></span> Sedang mengirim...';
                 submitBtn.disabled = true;
 
                 const newMessageDiv = document.createElement('div');
@@ -448,7 +448,7 @@ async function initGuestbookForm() {
                 newMessageDiv.innerHTML = `
           <div class="flex justify-between items-center mb-2">
             <h4 class="font-serif font-bold text-[#8D7B68]">${escapeHtml(name)}</h4>
-            <span class="text-[10px] text-gray-400 uppercase tracking-tighter">Just now</span>
+            <span class="text-[10px] text-gray-400 uppercase tracking-tighter">Baru saja</span>
           </div>
           <p class="text-sm leading-relaxed text-[#5A5A5A]">${escapeHtml(message)}</p>
         `;
@@ -466,11 +466,11 @@ async function initGuestbookForm() {
                             data: { name, message }
                         })
                     });
-                    showNotification('Your message has been sent!', 'success');
+                    showNotification('Pesan Anda telah terkirim!', 'success');
                     setTimeout(() => loadGuestbookMessages(), 2000);
                 } catch (error) {
-                    console.error('Error sending guestbook:', error);
-                    showNotification('Failed to send message. Please try again.', 'error');
+                    console.error('Terjadi kesalahan saat mengirim buku tamu:', error);
+                    showNotification('Pesan tidak berhasil terkirim. Silakan coba lagi.', 'error');
                     newMessageDiv.remove();
                 } finally {
                     submitBtn.innerHTML = originalText;
