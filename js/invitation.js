@@ -433,7 +433,7 @@ function renderGuestbookMessages(messages) {
         msgDiv.innerHTML = `
       <div class="flex justify-between items-center mb-2">
         <h4 class="font-serif font-bold text-[#8D7B68]">${escapeHtml(msg.name)}</h4>
-        <span class="text-[10px] text-gray-400 uppercase tracking-tighter">${formatTime(msg.timestamp)}</span>
+        <span class="text-[10px] text-gray-400 uppercase">${formatTime(msg.timestamp)}</span>
       </div>
       <p class="text-sm leading-relaxed text-[#5A5A5A]">${escapeHtml(msg.message)}</p>
     `;
