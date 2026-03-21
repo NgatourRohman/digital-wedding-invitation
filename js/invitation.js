@@ -1,3 +1,6 @@
+const BACKEND_URL = 'https://script.google.com/macros/s/AKfycbwaOKmlzYl5fTSARxB95hamAIXn-3nxAhqoRiCrnua_hSRw2HVgF2uuwQ3PbybtOMYuyg/exec';
+const BACKEND_PASSWORD = 'weddingInvitation123';
+
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         const response = await fetch('data/data.json');
@@ -33,6 +36,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         initDarkMode();
         initCountdown();
         initGuestbookForm();
+        initRsvpForm();
         initPetals();
         initScrollAnimations();
         initNavbarScroll();
@@ -456,39 +460,128 @@ function initDarkMode() {
     }
 }
 
-function initGuestbookForm() {
+async function initGuestbookForm() {
     const wishForm = document.getElementById('wish-form');
     const messagesList = document.getElementById('guestbook-messages');
     if (wishForm) {
-        wishForm.addEventListener('submit', (e) => {
+        wishForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const name = document.getElementById('name').value;
-            const message = document.getElementById('message').value;
+            const name = document.getElementById('name').value.trim();
+            const message = document.getElementById('message').value.trim();
             if (name && message) {
                 const submitBtn = wishForm.querySelector('button[type="submit"]');
                 const originalText = submitBtn.innerHTML;
                 submitBtn.innerHTML = '<span class="loading-spinner"></span> Sending...';
                 submitBtn.disabled = true;
 
-                setTimeout(() => {
-                    const newMessage = document.createElement('div');
-                    newMessage.className = 'guestbook-message animate-pulse fade-up';
-                    newMessage.innerHTML = `
-                        <div class="flex justify-between items-center mb-2">
-                            <h4 class="font-serif font-bold text-[#8D7B68]">${name}</h4>
-                            <span class="text-[10px] text-gray-400 uppercase tracking-tighter">Just now</span>
-                        </div>
-                        <p class="text-sm leading-relaxed text-[#5A5A5A]">${message}</p>
-                    `;
-                    messagesList.prepend(newMessage);
-                    wishForm.reset();
+                let newMessage = null;
+
+                try {
+                    const response = await fetch(BACKEND_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            action: 'guestbook',
+                            password: BACKEND_PASSWORD,
+                            data: { name, message }
+                        })
+                    });
+                    const result = await response.json();
+                    if (result.success) {
+                        newMessage = document.createElement('div');
+                        newMessage.className = 'guestbook-message animate-pulse fade-up';
+                        newMessage.innerHTML = `
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="font-serif font-bold text-[#8D7B68]">${escapeHtml(name)}</h4>
+                                <span class="text-[10px] text-gray-400 uppercase tracking-tighter">Just now</span>
+                            </div>
+                            <p class="text-sm leading-relaxed text-[#5A5A5A]">${escapeHtml(message)}</p>
+                        `;
+                        messagesList.prepend(newMessage);
+                        wishForm.reset();
+                        showNotification('Your message has been sent!', 'success');
+                    } else {
+                        throw new Error(result.error || 'Unknown error');
+                    }
+                } catch (error) {
+                    console.error('Error sending guestbook:', error);
+                    showNotification('Failed to send message. Please try again.', 'error');
+                } finally {
                     submitBtn.innerHTML = originalText;
                     submitBtn.disabled = false;
-                    setTimeout(() => newMessage.classList.remove('animate-pulse'), 2000);
-                }, 800);
+                    if (newMessage) {
+                        setTimeout(() => newMessage.classList.remove('animate-pulse'), 2000);
+                    }
+                }
             }
         });
     }
+}
+
+async function initRsvpForm() {
+    const rsvpForm = document.getElementById('rsvp-form');
+    if (!rsvpForm) return;
+
+    rsvpForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = rsvpForm.querySelector('input[placeholder="Full Name"]').value.trim();
+        const guestsSelect = rsvpForm.querySelector('select');
+        const guests = guestsSelect.options[guestsSelect.selectedIndex].text;
+        const status = 'Pending';
+
+        if (!name) {
+            showNotification('Please enter your name.', 'error');
+            return;
+        }
+
+        const submitBtn = rsvpForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<span class="loading-spinner"></span> Sending...';
+        submitBtn.disabled = true;
+
+        try {
+            const response = await fetch(BACKEND_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    action: 'rsvp',
+                    password: BACKEND_PASSWORD,
+                    data: { name, guests, status }
+                })
+            });
+            const result = await response.json();
+            if (result.success) {
+                showNotification('Thank you for your RSVP!', 'success');
+                rsvpForm.reset();
+            } else {
+                throw new Error(result.error || 'Unknown error');
+            }
+        } catch (error) {
+            console.error('Error sending RSVP:', error);
+            showNotification('Failed to send RSVP. Please try again.', 'error');
+        } finally {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+}
+
+function showNotification(message, type = 'info') {
+    const toast = document.createElement('div');
+    toast.textContent = message;
+    toast.className = `fixed bottom-4 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-full text-white text-sm z-50 transition-all duration-300 ${type === 'success' ? 'bg-green-600' : 'bg-red-600'
+        }`;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+}
+
+function escapeHtml(str) {
+    return str.replaceAll(/[&<>]/g, function (m) {
+        if (m === '&') return '&amp;';
+        if (m === '<') return '&lt;';
+        if (m === '>') return '&gt;';
+        return m;
+    });
 }
 
 function initPetals() {
