@@ -41,7 +41,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         initScrollAnimations();
         initNavbarScroll();
         initMobileMenu();
-        copyGiftNumber();
         addHoverEffects();
 
         setInterval(() => {
@@ -391,7 +390,7 @@ function renderGuestbookMessages(messages) {
         msgDiv.innerHTML = `
       <div class="flex justify-between items-center mb-2">
         <h4 class="font-serif font-bold text-[#8D7B68]">${escapeHtml(msg.name)}</h4>
-        <span class="text-[10px] text-gray-400 uppercase tracking-tighter">${formatTime(msg.timestamp)}</span>
+        <span class="text-[10px] text-gray-400 uppercase">${formatTime(msg.timestamp)}</span>
       </div>
       <p class="text-sm leading-relaxed text-[#5A5A5A]">${escapeHtml(msg.message)}</p>
     `;
@@ -604,22 +603,28 @@ function initDarkMode() {
     }
 }
 
-function showNotification(message, type = 'info') {
+function showNotification(message, type = 'success') {
     const toast = document.createElement('div');
-    toast.textContent = message;
-    toast.className = `fixed bottom-4 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-full text-white text-sm z-50 transition-all duration-300 ${type === 'success' ? 'bg-green-600' : 'bg-red-600'
+    toast.className = `fixed bottom-4 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-full text-white text-sm z-50 transition-all duration-300 ${type === 'success' ? 'bg-green-500' : 'bg-red-500'
         }`;
+    toast.innerText = message;
     document.body.appendChild(toast);
-    setTimeout(() => toast.remove(), 3000);
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 300);
+    }, 3000);
 }
 
 function escapeHtml(str) {
-    return str.replaceAll(/[&<>]/g, function (m) {
-        if (m === '&') return '&amp;';
-        if (m === '<') return '&lt;';
-        if (m === '>') return '&gt;';
-        return m;
-    });
+    if (!str) return '';
+    const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+    };
+    return str.replaceAll(/[&<>"']/g, m => map[m]);
 }
 
 function initPetals() {
