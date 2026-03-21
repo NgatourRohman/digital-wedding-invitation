@@ -119,19 +119,7 @@
   "guestbook": {
     "title": "Buku Tamu",
     "subtitle": "Tinggalkan pesan untuk kedua mempelai",
-    "background": "assets/images/guestbook-bg.png",
-    "initialMessages": [
-      {
-        "name": "Sarah & James",
-        "message": "Selamat menempuh hidup baru! Semoga selalu bahagia dan diberkahi.",
-        "time": "Baru saja"
-      },
-      {
-        "name": "Budi Santoso",
-        "message": "Semoga menjadi keluarga yang sakinah, mawaddah, warahmah. Barakallah!",
-        "time": "2 jam lalu"
-      }
-    ]
+    "background": "assets/images/guestbook-bg.png"
   },
   "closing": {
     "quote": "\"Merupakan suatu kehormatan dan kebahagiaan bagi kami sekeluarga, apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu kepada kedua mempelai.\"",

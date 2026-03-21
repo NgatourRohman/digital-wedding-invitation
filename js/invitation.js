@@ -1,3 +1,6 @@
+const BACKEND_URL = 'https://script.google.com/macros/s/AKfycbxMUZehvdaYnuMk3cQF--raJCW1Fn3SsjxTQUPkULYQMReWuyA1oQyzRZgZERLd78DIAQ/exec';
+const BACKEND_PASSWORD = 'weddingInvitation123';
+
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         const response = await fetch('data/data.json');
@@ -33,11 +36,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         initDarkMode();
         initCountdown();
         initGuestbookForm();
+        initRsvpForm();
         initPetals();
         initScrollAnimations();
         initNavbarScroll();
         initMobileMenu();
         addHoverEffects();
+
+        setInterval(() => {
+            loadGuestbookMessages();
+        }, 15000);
+
     } catch (error) {
         console.error('Error loading data:', error);
     }
@@ -256,6 +265,50 @@ function populateRsvp(rsvp) {
     document.getElementById('rsvp-description').textContent = rsvp.description;
 }
 
+async function initRsvpForm() {
+    const rsvpForm = document.getElementById('rsvp-form');
+    if (!rsvpForm) return;
+
+    rsvpForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = rsvpForm.querySelector('input[placeholder="Full Name"]').value.trim();
+        const guestsSelect = rsvpForm.querySelector('select');
+        const guests = guestsSelect.options[guestsSelect.selectedIndex].text;
+        const status = 'Pending';
+
+        if (!name) {
+            showNotification('Please enter your name.', 'error');
+            return;
+        }
+
+        const submitBtn = rsvpForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<span class="loading-spinner"></span> Sending...';
+        submitBtn.disabled = true;
+
+        try {
+            await fetch(BACKEND_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    action: 'rsvp',
+                    password: BACKEND_PASSWORD,
+                    data: { name, guests, status }
+                })
+            });
+            showNotification('Thank you for your RSVP!', 'success');
+            rsvpForm.reset();
+        } catch (error) {
+            console.error('Error sending RSVP:', error);
+            showNotification('Failed to send RSVP. Please try again.', 'error');
+        } finally {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+}
+
 function populateGift(gift, couple) {
     if (!gift) return;
 
@@ -314,24 +367,119 @@ function copyGiftNumber(text, btn) {
     });
 }
 
-function populateGuestbook(guestbook) {
-    document.getElementById('guestbook-title').textContent = guestbook.title;
-    document.getElementById('guestbook-subtitle').textContent = guestbook.subtitle;
+async function fetchGuestbookMessages() {
+    try {
+        const url = `${BACKEND_URL}?action=getGuestbook&password=${encodeURIComponent(BACKEND_PASSWORD)}`;
+        const response = await fetch(url);
+        const result = await response.json();
+        if (result.success) {
+            return result.messages;
+        } else {
+            console.error('Failed to fetch guestbook:', result.error);
+            return [];
+        }
+    } catch (error) {
+        console.error('Error fetching guestbook:', error);
+        return [];
+    }
+}
 
-    const messagesContainer = document.getElementById('guestbook-messages');
-    messagesContainer.innerHTML = '';
-    guestbook.initialMessages.forEach(msg => {
+function formatTime(timestamp) {
+    if (!timestamp) return 'Just now';
+    const date = new Date(timestamp);
+    const now = new Date();
+    const diff = Math.floor((now - date) / 1000);
+    if (diff < 60) return 'Just now';
+    if (diff < 3600) return `${Math.floor(diff / 60)} minutes ago`;
+    if (diff < 86400) return `${Math.floor(diff / 3600)} hours ago`;
+    return date.toLocaleDateString();
+}
+
+function renderGuestbookMessages(messages) {
+    const container = document.getElementById('guestbook-messages');
+    if (!container) return;
+    container.innerHTML = '';
+    if (!messages.length) {
+        container.innerHTML = '<div class="text-center text-gray-400 py-8">No messages yet. Be the first to leave a wish!</div>';
+        return;
+    }
+    messages.forEach(msg => {
         const msgDiv = document.createElement('div');
         msgDiv.className = 'guestbook-message fade-up';
         msgDiv.innerHTML = `
-            <div class="flex justify-between items-center mb-2">
-                <h4 class="font-serif font-bold text-[#8D7B68]">${msg.name}</h4>
-                <span class="text-[10px] text-gray-400 uppercase tracking-tighter">${msg.time}</span>
-            </div>
-            <p class="text-sm leading-relaxed text-[#5A5A5A]">${msg.message}</p>
-        `;
-        messagesContainer.appendChild(msgDiv);
+      <div class="flex justify-between items-center mb-2">
+        <h4 class="font-serif font-bold text-[#8D7B68]">${escapeHtml(msg.name)}</h4>
+        <span class="text-[10px] text-gray-400 uppercase tracking-tighter">${formatTime(msg.timestamp)}</span>
+      </div>
+      <p class="text-sm leading-relaxed text-[#5A5A5A]">${escapeHtml(msg.message)}</p>
+    `;
+        container.appendChild(msgDiv);
     });
+    document.querySelectorAll('#guestbook-messages .fade-up').forEach(el => el.classList.add('is-visible'));
+}
+
+async function loadGuestbookMessages() {
+    const messages = await fetchGuestbookMessages();
+    renderGuestbookMessages(messages);
+}
+
+function populateGuestbook(guestbook) {
+    document.getElementById('guestbook-title').textContent = guestbook.title;
+    document.getElementById('guestbook-subtitle').textContent = guestbook.subtitle;
+    loadGuestbookMessages();
+}
+
+async function initGuestbookForm() {
+    const wishForm = document.getElementById('wish-form');
+    const messagesList = document.getElementById('guestbook-messages');
+    if (wishForm) {
+        wishForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const message = document.getElementById('message').value.trim();
+            if (name && message) {
+                const submitBtn = wishForm.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<span class="loading-spinner"></span> Sending...';
+                submitBtn.disabled = true;
+
+                const newMessageDiv = document.createElement('div');
+                newMessageDiv.className = 'guestbook-message animate-pulse fade-up';
+                newMessageDiv.innerHTML = `
+          <div class="flex justify-between items-center mb-2">
+            <h4 class="font-serif font-bold text-[#8D7B68]">${escapeHtml(name)}</h4>
+            <span class="text-[10px] text-gray-400 uppercase tracking-tighter">Just now</span>
+          </div>
+          <p class="text-sm leading-relaxed text-[#5A5A5A]">${escapeHtml(message)}</p>
+        `;
+                messagesList.prepend(newMessageDiv);
+                wishForm.reset();
+
+                try {
+                    await fetch(BACKEND_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            action: 'guestbook',
+                            password: BACKEND_PASSWORD,
+                            data: { name, message }
+                        })
+                    });
+                    showNotification('Your message has been sent!', 'success');
+                    setTimeout(() => loadGuestbookMessages(), 2000);
+                } catch (error) {
+                    console.error('Error sending guestbook:', error);
+                    showNotification('Failed to send message. Please try again.', 'error');
+                    newMessageDiv.remove();
+                } finally {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    setTimeout(() => newMessageDiv?.classList.remove('animate-pulse'), 2000);
+                }
+            }
+        });
+    }
 }
 
 function populateClosing(closing) {
@@ -470,41 +618,6 @@ function initDarkMode() {
             document.documentElement.classList.toggle('dark');
             toggleBtn.classList.add('scale-90');
             setTimeout(() => toggleBtn.classList.remove('scale-90'), 200);
-        });
-    }
-}
-
-function initGuestbookForm() {
-    const wishForm = document.getElementById('wish-form');
-    const messagesList = document.getElementById('guestbook-messages');
-    if (wishForm) {
-        wishForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('name').value;
-            const message = document.getElementById('message').value;
-            if (name && message) {
-                const submitBtn = wishForm.querySelector('button[type="submit"]');
-                const originalText = submitBtn.innerHTML;
-                submitBtn.innerHTML = '<span class="loading-spinner"></span> Mengirim...';
-                submitBtn.disabled = true;
-
-                setTimeout(() => {
-                    const newMessage = document.createElement('div');
-                    newMessage.className = 'guestbook-message animate-pulse fade-up';
-                    newMessage.innerHTML = `
-                        <div class="flex justify-between items-center mb-2">
-                            <h4 class="font-serif font-bold text-[#8D7B68]">${name}</h4>
-                            <span class="text-[10px] text-gray-400 uppercase tracking-tighter">Baru saja</span>
-                        </div>
-                        <p class="text-sm leading-relaxed text-[#5A5A5A]">${message}</p>
-                    `;
-                    messagesList.prepend(newMessage);
-                    wishForm.reset();
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                    setTimeout(() => newMessage.classList.remove('animate-pulse'), 2000);
-                }, 800);
-            }
         });
     }
 }
